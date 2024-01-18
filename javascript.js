@@ -18,8 +18,15 @@ var LazerYPositions = [];
  }
 
  // positions of fmy alien
- var alienx = 120
- var alieny = 150
+ /*var alien.x = 120
+ var alien.y = 150*/
+
+ var alien = {
+   x:120,
+   y:150,
+   color:"white"
+
+ }
 
  draw = function() {
 
@@ -87,25 +94,22 @@ var LazerYPositions = [];
    }
 
  }
-function drawAlienWithGreyOrRedIfAboveShip(){
-  if (ship.x > alienx && ship.x < alienx + 50 && keyCode === 32){
- fill(255,0,0);
- rect(alienx, alieny, 50, 70);
- fill(255,255,255);
-
-
-           }
- else{
-
-   rect(alienx, alieny, 50, 70);
+ function drawAlienWithGreyOrRedIfAboveShip(){
+  if (ship.x > alien.x && ship.x < alien.x + 50 && keyCode === 32){
+    alien.color = "red";
+    fill(alien.color);
+    rect(alien.x, alien.y, 50, 70);
+    fill("white");
+  }
+  else{
+ fill(alien.color);
+ rect(alien.x, alien.y, 50, 70);
+ fill("white");
  }
 }
 
 
-
-
-
-var myShape = function (){
+ var myShape = function (){
   rect(24,24,24,24);
   console.log("aslndlaskndlasdnlksad")
 }
@@ -149,4 +153,4 @@ var myShape = function (){
  // f16 png https://imgur.com/xNeYfwT
 
 
- //if ship x = alienx >/< some number then make alein dissappear
+ //if ship x = alien.x >/< some number then make alein dissappear
