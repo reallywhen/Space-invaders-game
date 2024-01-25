@@ -21,9 +21,11 @@
        var alien = {
          x: 120,
          y: 150,
-         color: "white"
-
+         color: "white",
+         alive: true
        }
+
+
 
        draw = function() {
 
@@ -89,12 +91,15 @@
 
        function drawAlienWithGreyOrRedIfAboveShip() {
          if (ship.x > alien.x && ship.x < alien.x + 50 && keyCode === 32) {
-           alien.color = "red";
+           alien.alive = false;
          }
-         fill(alien.color);
+         if (alien.alive === true){
+          fill(alien.color);
          rect(alien.x, alien.y, 50, 70);
          fill("white");
        }
+       }
+
 
 
  
@@ -116,6 +121,7 @@
        // 2.2 fire bullets with keyoard command "w"
        //3. enemies that disappear when my projectile collides with them
        //4.a background, preferablly creating the illusion on movement but not nessasary
+       //make it come back alive in white somewherer else
 
 
 
