@@ -148,6 +148,14 @@ function killCounter() {
   }
   text(killNumber, 200, 30);
 }
+function lossScreen() {
+  if (killNumber < 20 && timerNumber < 1) {
+    background(0, 0, 0);
+    fill(255, 0, 0);
+    text("lmao you suck at this game", 250, 350);
+    fill(0, 0, 0);
+  }
+}
 
 //--------------------------------------ALIEN 1--------------------------------------------------------
 
