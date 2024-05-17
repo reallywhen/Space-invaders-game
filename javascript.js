@@ -171,7 +171,7 @@ function lossScreen() {
   }
 }
 function lossScreen() {
-  if (killNumber < 20 && timerNumber < 1) {
+  if (killNumber < 5 && timerNumber < 1) {
     background(0, 0, 0);
     fill(255, 0, 0);
     text("lmao you suck at this game", 250, 350);
@@ -179,7 +179,7 @@ function lossScreen() {
   }
 }
 function winScreen() {
-  if (killNumber > 20) {
+  if (killNumber > 5) {
     background(0, 255, 0);
     fill(0, 0, 0);
     text("generational prodigy", 250, 350);
@@ -253,3 +253,5 @@ function drawalien2WithGreyOrRedIfAboveShip() {
 //timer
 //quota
 // gets harder rounds
+// drw= function called every frame, make it called every 30 fromes, then reset.
+//
