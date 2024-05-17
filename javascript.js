@@ -41,6 +41,7 @@ var timerNumber = 10;
 
 //universalalienspeed, pretty self explanitory
 var alien1Speed = 3;
+var alien2Speed = 3;
 
 var alien1Left;
 
@@ -80,8 +81,11 @@ draw = function () {
   drawalien2WithGreyOrRedIfAboveShip();
   count = 0;
   updateAlien1Pos();
+  updateAlien2Pos();
   stopIt();
   bigCountdownTimer();
+  lossScreen();
+  winScreen();
 };
 
 var count = 0;
@@ -114,6 +118,16 @@ function updateAlien1Pos() {
     alien1.x = alien1.x + alien1Speed;
   }
 }
+function updateAlien2Pos() {
+  // Update the position of alien1
+  if (alien2.alive === true) {
+    if (randomNumberForAnything(10) > 9) {
+      alien2Speed = alien2Speed * -1;
+    }
+
+    alien2.x = alien2.x + alien2Speed;
+  }
+}
 
 //makes it so the alien doesnt go otuside the border
 function stopIt() {
@@ -142,7 +156,7 @@ function bigCountdownTimer() {
 }
 
 function killCounter() {
-  if (alien1.alive === false) {
+  if (alien1.alive === false || alien2.alive === false) {
     killNumber = killNumber + 1;
     console.log("ekjasdaksd");
   }
@@ -153,6 +167,22 @@ function lossScreen() {
     background(0, 0, 0);
     fill(255, 0, 0);
     text("lmao you suck at this game", 250, 350);
+    fill(0, 0, 0);
+  }
+}
+function lossScreen() {
+  if (killNumber < 20 && timerNumber < 1) {
+    background(0, 0, 0);
+    fill(255, 0, 0);
+    text("lmao you suck at this game", 250, 350);
+    fill(0, 0, 0);
+  }
+}
+function winScreen() {
+  if (killNumber > 20) {
+    background(0, 255, 0);
+    fill(0, 0, 0);
+    text("generational prodigy", 250, 350);
     fill(0, 0, 0);
   }
 }
