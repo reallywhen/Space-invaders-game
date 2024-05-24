@@ -1,6 +1,13 @@
 function setup() {
   createCanvas(500, 900);
 }
+
+var img;
+
+function preload() {
+  img = loadImage("FW-190 D-9 for game.jpg");
+}
+
 //bullet x and y positions
 var LazerXPositions = [];
 var LazerYPositions = [];
@@ -39,7 +46,7 @@ var timerNumber = 10;
         var G = Math.floor(Math.random() * 256);
         var B = Math.floor(Math.random() * 256);*/
 
-//universalalienspeed, pretty self explanitory
+//universalalienspeed, pretty self explanatory
 var alien1Speed = 3;
 var alien2Speed = 3;
 
@@ -52,16 +59,16 @@ draw = function () {
 
   // make ship move left at a constant speed
   if (keyIsDown(65)) {
-    ship.x -= 4;
+    ship.x -= 8;
   }
 
   //make ship move right at a constant speed
   if (keyIsDown(68)) {
-    ship.x += 4;
+    ship.x += 8;
   }
   for (var i = 0; i < LazerXPositions.length; i++) {
     ellipse(LazerXPositions[i], LazerYPositions[i] - 25, 10, 100);
-    LazerYPositions[i] += -80;
+    LazerYPositions[i] += -140;
   }
 
   ellipse(ship.x, ship.y, 50);
@@ -86,6 +93,8 @@ draw = function () {
   bigCountdownTimer();
   lossScreen();
   winScreen();
+
+  image(img, ship.x, ship.y);
 };
 
 var count = 0;
@@ -171,7 +180,7 @@ function lossScreen() {
   }
 }
 function lossScreen() {
-  if (killNumber < 5 && timerNumber < 1) {
+  if (killNumber < 19 && timerNumber < 1) {
     background(0, 0, 0);
     fill(255, 0, 0);
     text("lmao you suck at this game", 250, 350);
@@ -179,7 +188,7 @@ function lossScreen() {
   }
 }
 function winScreen() {
-  if (killNumber > 5) {
+  if (killNumber > 19) {
     background(0, 255, 0);
     fill(0, 0, 0);
     text("generational prodigy", 250, 350);
