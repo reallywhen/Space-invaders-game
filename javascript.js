@@ -22,9 +22,28 @@ var ship = {
 /*var alien1.x = 120
        var alien1.y = 150*/
 
+var alien = function (x, y, colorR, colorG, colorB, hit) {
+  this.x = x;
+  this.y = y;
+  this.width = 50;
+  this.height = 70;
+  this.speed = 3;
+  this.colorR = colorR;
+  this.colorG = colorG;
+  this.colorB = colorB;
+  this.alive = true;
+  this.hit = function () {
+    if (ship.x > this.x && ship.x < this.x + this.width) {
+      this.alive = false;
+    }
+  };
+};
+
 var alien1 = {
   x: 120,
   y: 150,
+  width: 50,
+  height: 70,
   speed: 5,
   colorR: 231,
   colorG: 123,
@@ -35,6 +54,8 @@ var alien1 = {
 var alien2 = {
   x: 300,
   y: 150,
+  width: 50,
+  height: 70,
   speed: 5,
   colorR: 132,
   colorG: 255,
@@ -101,12 +122,8 @@ var count = 0;
 //-----------------------------------🌈🌈🌈RAINBOW AREA🌈🌈🌈-------------------------------------------------------
 
 function keyPressed() {
-  if (keyCode === 32 && ship.x > alien1.x && ship.x < alien1.x + 50) {
-    alien1.alive = false;
-  }
-  if (keyCode === 32 && ship.x > alien2.x && ship.x < alien2.x + 50) {
-    alien2.alive = false;
-  }
+  alien1.hit();
+  alien2.hit();
   if (keyCode === 32) {
     LazerXPositions.push(ship.x);
     LazerYPositions.push(ship.y);
@@ -201,7 +218,7 @@ function winScreen() {
 function drawalien1WithGreyOrRedIfAboveShip() {
   if (alien1.alive === true) {
     fill(alien1.colorR, alien1.colorG, alien1.colorB);
-    rect(alien1.x, alien1.y, 50, 70);
+    rect(alien1.x, alien1.y, alien1.width, alien1.height);
     fill(255, 255, 255);
   }
   if (alien1.alive === false) {
