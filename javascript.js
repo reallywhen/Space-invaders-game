@@ -25,6 +25,7 @@ var ship = {
 var alien1 = {
   x: 120,
   y: 150,
+  speed: 5,
   colorR: 231,
   colorG: 123,
   colorB: 213,
@@ -34,6 +35,7 @@ var alien1 = {
 var alien2 = {
   x: 300,
   y: 150,
+  speed: 5,
   colorR: 132,
   colorG: 255,
   colorB: 23,
@@ -47,8 +49,6 @@ var timerNumber = 10;
         var B = Math.floor(Math.random() * 256);*/
 
 //universalalienspeed, pretty self explanatory
-var alien1Speed = 3;
-var alien2Speed = 3;
 
 var alien1Left;
 
@@ -121,20 +121,20 @@ function updateAlien1Pos() {
   // Update the position of alien1
   if (alien1.alive === true) {
     if (randomNumberForAnything(10) > 9) {
-      alien1Speed = alien1Speed * -1;
+      alien1.speed = alien1.speed * -1;
     }
 
-    alien1.x = alien1.x + alien1Speed;
+    alien1.x = alien1.x + alien1.speed;
   }
 }
 function updateAlien2Pos() {
   // Update the position of alien1
   if (alien2.alive === true) {
     if (randomNumberForAnything(10) > 9) {
-      alien2Speed = alien2Speed * -1;
+      alien2.speed = alien2.speed * -1;
     }
 
-    alien2.x = alien2.x + alien2Speed;
+    alien2.x = alien2.x + alien2.speed;
   }
 }
 
