@@ -22,7 +22,7 @@ var ship = {
 /*var alien1.x = 120
        var alien1.y = 150*/
 
-var alien = function (x, y, colorR, colorG, colorB, hit) {
+var alien = function (x, y, colorR, colorG, colorB) {
   this.x = x;
   this.y = y;
   this.width = 50;
@@ -37,31 +37,19 @@ var alien = function (x, y, colorR, colorG, colorB, hit) {
       this.alive = false;
     }
   };
+  this.barrier = function () {
+    if (this.x > 450) {
+      this.x = 450;
+    }
+
+    if (this.x < 0) {
+      this.x = 0;
+    }
+  };
 };
 
-var alien1 = {
-  x: 120,
-  y: 150,
-  width: 50,
-  height: 70,
-  speed: 5,
-  colorR: 231,
-  colorG: 123,
-  colorB: 213,
-  alive: true,
-};
-
-var alien2 = {
-  x: 300,
-  y: 150,
-  width: 50,
-  height: 70,
-  speed: 5,
-  colorR: 132,
-  colorG: 255,
-  colorB: 23,
-  alive: true,
-};
+var alien1 = new alien(120, 150, 231, 123, 213);
+var alien2 = new alien(300, 150, 132, 255, 23);
 
 var timerNumber = 10;
 
@@ -127,6 +115,7 @@ function keyPressed() {
   if (keyCode === 32) {
     LazerXPositions.push(ship.x);
     LazerYPositions.push(ship.y);
+    console.log("asdasid");
   }
 }
 
@@ -157,18 +146,8 @@ function updateAlien2Pos() {
 
 //makes it so the alien doesnt go otuside the border
 function stopIt() {
-  if (alien1.x > 450) {
-    alien1.x = 450;
-  }
-  if (alien1.x < 0) {
-    alien1.x = 0;
-  }
-  if (alien2.x > 450) {
-    alien2.x = 450;
-  }
-  if (alien2.x < 0) {
-    alien2.x = 0;
-  }
+  alien1.barrier();
+  alien2.barrier();
 }
 
 function bigCountdownTimer() {
@@ -188,14 +167,7 @@ function killCounter() {
   }
   text(killNumber, 200, 30);
 }
-function lossScreen() {
-  if (killNumber < 20 && timerNumber < 1) {
-    background(0, 0, 0);
-    fill(255, 0, 0);
-    text("lmao you suck at this game", 250, 350);
-    fill(0, 0, 0);
-  }
-}
+
 function lossScreen() {
   if (killNumber < 19 && timerNumber < 1) {
     background(0, 0, 0);
