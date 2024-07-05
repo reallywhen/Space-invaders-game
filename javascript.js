@@ -50,7 +50,6 @@ var alien = function (x, y, colorR, colorG, colorB) {
 
 var alien1 = new alien(120, 150, 231, 123, 213);
 var alien2 = new alien(300, 150, 132, 255, 23);
-var alien3 = new alien(390, 150, 170, 1, 254);
 
 var timerNumber = 10;
 
@@ -98,8 +97,8 @@ draw = function () {
   // make it so that the space bar activates its so its not aa lazer
 
   killCounter();
-  drawalien1WithGreyOrRedIfAboveShip();
-  drawalien2WithGreyOrRedIfAboveShip();
+  drawalien2WithGreyOrRedIfAboveShip(alien1);
+  drawalien2WithGreyOrRedIfAboveShip(alien2);
   count = 0;
   updateAlien1Pos();
   updateAlien2Pos();
@@ -190,43 +189,25 @@ function winScreen() {
   }
 }
 
-//--------------------------------------ALIEN 1--------------------------------------------------------
+//--------------------------------------ALIENS--------------------------------------------------------
 
-function drawalien1WithGreyOrRedIfAboveShip() {
-  if (alien1.alive === true) {
-    fill(alien1.colorR, alien1.colorG, alien1.colorB);
-    rect(alien1.x, alien1.y, alien1.width, alien1.height);
+function drawalien2WithGreyOrRedIfAboveShip(someAlien) {
+  if (someAlien.alive === true) {
+    fill(someAlien.colorR, someAlien.colorG, someAlien.colorB);
+    rect(someAlien.x, someAlien.y, 50, 70);
     fill(255, 255, 255);
   }
-  if (alien1.alive === false) {
-    alien1.x = randomNumberForAnything(490);
-    alien1.colorR = random(0, 255);
-    alien1.colorG = random(0, 255);
-    alien1.colorB = random(0, 255);
+  if (someAlien.alive === false) {
+    someAlien.x = randomNumberForAnything(490);
+    someAlien.colorR = random(0, 255);
+    someAlien.colorG = random(0, 255);
+    someAlien.colorB = random(0, 255);
 
-    alien1.y = randomNumberForAnything(490);
-    alien1.alive = true;
+    someAlien.y = randomNumberForAnything(490);
+    someAlien.alive = true;
   }
 }
-
-//--------------------------------------ALIEN 2--------------------------------------------------------
-
-function drawalien2WithGreyOrRedIfAboveShip() {
-  if (alien2.alive === true) {
-    fill(alien2.colorR, alien2.colorG, alien2.colorB);
-    rect(alien2.x, alien2.y, 50, 70);
-    fill(255, 255, 255);
-  }
-  if (alien2.alive === false) {
-    alien2.x = randomNumberForAnything(490);
-    alien2.colorR = random(0, 255);
-    alien2.colorG = random(0, 255);
-    alien2.colorB = random(0, 255);
-
-    alien2.y = randomNumberForAnything(490);
-    alien2.alive = true;
-  }
-}
+function example() {}
 
 // it reset c when an arrow key is realeased
 
