@@ -50,6 +50,7 @@ var alien = function (x, y, colorR, colorG, colorB) {
 
 var alien1 = new alien(120, 150, 231, 123, 213);
 var alien2 = new alien(300, 150, 132, 255, 23);
+var alien3 = new alien(390, 150, 170, 1, 254);
 
 var timerNumber = 10;
 
@@ -77,7 +78,11 @@ draw = function () {
   }
   for (var i = 0; i < LazerXPositions.length; i++) {
     ellipse(LazerXPositions[i], LazerYPositions[i] - 25, 10, 100);
-    LazerYPositions[i] += -140;
+    LazerYPositions[i] += -100;
+  }
+
+  for (var i = 0; i < LazerXPositions.length; i++) {
+    console.log("hi");
   }
 
   ellipse(ship.x, ship.y, 50);
