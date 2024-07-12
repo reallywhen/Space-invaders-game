@@ -22,12 +22,12 @@ var ship = {
 /*var alien1.x = 120
        var alien1.y = 150*/
 
-var alien = function (x, y, colorR, colorG, colorB) {
+var alien = function (x, y, speed, colorR, colorG, colorB) {
   this.x = x;
   this.y = y;
   this.width = 50;
   this.height = 70;
-  this.speed = 3;
+  this.speed = speed;
   this.colorR = colorR;
   this.colorG = colorG;
   this.colorB = colorB;
@@ -48,8 +48,9 @@ var alien = function (x, y, colorR, colorG, colorB) {
   };
 };
 
-var alien1 = new alien(120, 150, 231, 123, 213);
-var alien2 = new alien(300, 150, 132, 255, 23);
+var alien1 = new alien(120, 150, 3, 231, 123, 213);
+var alien2 = new alien(300, 150, 3, 132, 255, 23);
+var alien3 = new alien(340, 150, 3, 167, 178, 157);
 
 var timerNumber = 10;
 
@@ -99,9 +100,14 @@ draw = function () {
   killCounter();
   drawalien2WithGreyOrRedIfAboveShip(alien1);
   drawalien2WithGreyOrRedIfAboveShip(alien2);
+  drawalien2WithGreyOrRedIfAboveShip(alien3);
   count = 0;
-  updateAlien1Pos();
-  updateAlien2Pos();
+  // updateAlien1Pos();
+  // updateAlien2Pos();
+  updateAlienPos(alien1);
+  updateAlienPos(alien2);
+  updateAlienPos(alien3);
+
   stopIt();
   bigCountdownTimer();
   lossScreen();
@@ -116,6 +122,7 @@ var count = 0;
 function keyPressed() {
   alien1.hit();
   alien2.hit();
+  alien3.hit();
   if (keyCode === 32) {
     LazerXPositions.push(ship.x);
     LazerYPositions.push(ship.y);
@@ -127,7 +134,17 @@ function randomNumberForAnything(max) {
   return Math.floor(Math.random() * (max + 1));
 }
 
-function updateAlien1Pos() {
+function updateAlienPos(someAlien) {
+  if (someAlien.alive === true) {
+    if (randomNumberForAnything(10) > 9) {
+      someAlien.speed = someAlien.speed * -1;
+    }
+
+    someAlien.x = someAlien.x + someAlien.speed;
+  }
+}
+
+/*function updateAlien1Pos() {
   // Update the position of alien1
   if (alien1.alive === true) {
     if (randomNumberForAnything(10) > 9) {
@@ -146,12 +163,13 @@ function updateAlien2Pos() {
 
     alien2.x = alien2.x + alien2.speed;
   }
-}
+}*/
 
 //makes it so the alien doesnt go otuside the border
 function stopIt() {
   alien1.barrier();
   alien2.barrier();
+  alien3.barrier();
 }
 
 function bigCountdownTimer() {
@@ -165,7 +183,11 @@ function bigCountdownTimer() {
 }
 
 function killCounter() {
-  if (alien1.alive === false || alien2.alive === false) {
+  if (
+    alien1.alive === false ||
+    alien2.alive === false ||
+    alien3.alive === false
+  ) {
     killNumber = killNumber + 1;
     console.log("ekjasdaksd");
   }
