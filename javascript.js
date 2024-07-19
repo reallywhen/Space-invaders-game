@@ -5,7 +5,7 @@ function setup() {
 var img;
 
 function preload() {
-  img = loadImage("FW-190 D-9 for game.jpg");
+  img = loadImage("FW-190 D-9 for game.png");
 }
 
 //bullet x and y positions
@@ -112,7 +112,7 @@ draw = function () {
   bigCountdownTimer();
   lossScreen();
   winScreen();
-
+  img.resize(250, 0);
   image(img, ship.x, ship.y);
 };
 
