@@ -11,7 +11,7 @@ function preload() {
 //bullet x and y positions
 var LazerXPositions = [];
 var LazerYPositions = [];
-
+var alienArray = [];
 //position of my aircraft
 var ship = {
   x: 150,
@@ -51,6 +51,11 @@ var alien = function (x, y, speed, colorR, colorG, colorB) {
 var alien1 = new alien(120, 150, 3, 231, 123, 213);
 var alien2 = new alien(300, 150, 3, 132, 255, 23);
 var alien3 = new alien(340, 150, 3, 167, 178, 157);
+var alien4 = new alien(180, 150, 3, 183, 143, 97);
+
+alienArray[0] = alien1;
+alienArray[1] = alien2;
+alienArray[2] = alien3;
 
 var timerNumber = 10;
 
@@ -77,12 +82,14 @@ draw = function () {
     ship.x += 8;
   }
   for (var i = 0; i < LazerXPositions.length; i++) {
+    fill(255, 251, 202);
     ellipse(LazerXPositions[i], LazerYPositions[i] - 25, 10, 100);
     LazerYPositions[i] += -100;
   }
 
   for (var i = 0; i < LazerXPositions.length; i++) {
     console.log("hi");
+    fill(0, 0, 0);
   }
 
   ellipse(ship.x, ship.y, 50);
@@ -98,9 +105,10 @@ draw = function () {
   // make it so that the space bar activates its so its not aa lazer
 
   killCounter();
-  drawalien2WithGreyOrRedIfAboveShip(alien1);
-  drawalien2WithGreyOrRedIfAboveShip(alien2);
-  drawalien2WithGreyOrRedIfAboveShip(alien3);
+
+  for (var i = 0; i < alienArray.length; i++) {
+    drawalien2WithGreyOrRedIfAboveShip(alienArray[i]);
+  }
   count = 0;
   // updateAlien1Pos();
   // updateAlien2Pos();
@@ -113,7 +121,7 @@ draw = function () {
   lossScreen();
   winScreen();
   img.resize(250, 0);
-  image(img, ship.x, ship.y);
+  image(img, ship.x - 126, ship.y - 80);
 };
 
 var count = 0;
