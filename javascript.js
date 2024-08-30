@@ -89,7 +89,6 @@ draw = function () {
   }
 
   for (var i = 0; i < LazerXPositions.length; i++) {
-    console.log("hi");
     fill(0, 0, 0);
   }
 
@@ -104,9 +103,7 @@ draw = function () {
   }
 
   // make it so that the space bar activates its so its not aa lazer
-
   killCounter();
-
   for (var i = 0; i < alienArray.length; i++) {
     drawalien2WithGreyOrRedIfAboveShip(alienArray[i]);
     updateAlienPos(alienArray[i]);
@@ -121,6 +118,7 @@ draw = function () {
   winScreen();
   img.resize(250, 0);
   image(img, ship.x - 126, ship.y - 80);
+  console.log("killCount is", killNumber);
 };
 
 var count = 0;
@@ -191,7 +189,14 @@ function bigCountdownTimer() {
 }
 
 function killCounter() {
-  if (
+  for (var i = 0; i < alienArray.length; i++) {
+    if (alienArray[i].alive === false) {
+      killNumber = killNumber + 1;
+    }
+    text(killNumber, 200, 30);
+  }
+
+  /* if (
     alien1.alive === false ||
     alien2.alive === false ||
     alien3.alive === false ||
@@ -200,7 +205,7 @@ function killCounter() {
     killNumber = killNumber + 1;
     console.log("ekjasdaksd");
   }
-  text(killNumber, 200, 30);
+  text(killNumber, 200, 30);*/
 }
 
 function lossScreen() {
