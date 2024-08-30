@@ -56,10 +56,11 @@ var alien4 = new alien(180, 150, 3, 183, 143, 97);
 alienArray[0] = alien1;
 alienArray[1] = alien2;
 alienArray[2] = alien3;
+alienArray[3] = alien4;
 
 var timerNumber = 10;
 
-/*var R = Math.floor(Math.random() * 256);
+/*var R = Math.floor(Math.random() * 256);-
         var G = Math.floor(Math.random() * 256);
         var B = Math.floor(Math.random() * 256);*/
 
@@ -108,13 +109,11 @@ draw = function () {
 
   for (var i = 0; i < alienArray.length; i++) {
     drawalien2WithGreyOrRedIfAboveShip(alienArray[i]);
+    updateAlienPos(alienArray[i]);
   }
   count = 0;
   // updateAlien1Pos();
   // updateAlien2Pos();
-  updateAlienPos(alien1);
-  updateAlienPos(alien2);
-  updateAlienPos(alien3);
 
   stopIt();
   bigCountdownTimer();
@@ -128,13 +127,14 @@ var count = 0;
 //-----------------------------------🌈🌈🌈RAINBOW AREA🌈🌈🌈-------------------------------------------------------
 
 function keyPressed() {
-  alien1.hit();
-  alien2.hit();
-  alien3.hit();
   if (keyCode === 32) {
     LazerXPositions.push(ship.x);
     LazerYPositions.push(ship.y);
     console.log("asdasid");
+
+    for (var i = 0; i < alienArray.length; i++) {
+      alienArray[i].hit();
+    }
   }
 }
 
@@ -175,9 +175,9 @@ function updateAlien2Pos() {
 
 //makes it so the alien doesnt go otuside the border
 function stopIt() {
-  alien1.barrier();
-  alien2.barrier();
-  alien3.barrier();
+  for (var i = 0; i < alienArray.length; i++) {
+    alienArray[i].barrier();
+  }
 }
 
 function bigCountdownTimer() {
@@ -194,7 +194,8 @@ function killCounter() {
   if (
     alien1.alive === false ||
     alien2.alive === false ||
-    alien3.alive === false
+    alien3.alive === false ||
+    alien4.alive === false
   ) {
     killNumber = killNumber + 1;
     console.log("ekjasdaksd");
