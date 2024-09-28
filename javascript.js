@@ -48,15 +48,11 @@ var alien = function (x, y, speed, colorR, colorG, colorB) {
   };
 };
 
-var alien1 = new alien(120, 150, 3, 231, 123, 213);
-var alien2 = new alien(300, 150, 3, 132, 255, 23);
-var alien3 = new alien(340, 150, 3, 167, 178, 157);
-var alien4 = new alien(180, 150, 3, 183, 143, 97);
-
-alienArray[0] = alien1;
-alienArray[1] = alien2;
-alienArray[2] = alien3;
-alienArray[3] = alien4;
+var alienAmount = 25;
+for (var i = 0; i < alienAmount; i++) {
+  var tempAlien = new alien(120, 150, 3, 231, 123, 213);
+  alienArray[i] = tempAlien;
+}
 
 var timerNumber = 10;
 
@@ -209,7 +205,7 @@ function killCounter() {
 }
 
 function lossScreen() {
-  if (killNumber < 19 && timerNumber < 1) {
+  if (killNumber < 20 && timerNumber < 1) {
     background(0, 0, 0);
     fill(255, 0, 0);
     text("lmao you suck at this game", 250, 350);
@@ -217,7 +213,7 @@ function lossScreen() {
   }
 }
 function winScreen() {
-  if (killNumber > 19) {
+  if (killNumber > 20) {
     background(0, 255, 0);
     fill(0, 0, 0);
     text("generational prodigy", 250, 350);

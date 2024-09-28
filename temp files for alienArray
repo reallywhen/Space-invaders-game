@@ -1,0 +1,15 @@
+var alien1 = new alien(120, 150, 3, 231, 123, 213);
+var alien2 = new alien(300, 150, 3, 132, 255, 23);
+var alien3 = new alien(340, 150, 3, 167, 178, 157);
+var alien4 = new alien(180, 150, 3, 183, 143, 97);
+
+alienArray[0] = alien1;
+alienArray[1] = alien2;
+alienArray[2] = alien3;
+alienArray[3] = alien4;
+
+var alienAmount = 5;
+for (var i = 0; i < alienAmount; i++) {
+  var tempAlien = new alien(120, 150, 3, 231, 123, 213);
+  alienArray[i] = tempAlien;
+}
